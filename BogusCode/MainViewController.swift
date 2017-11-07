@@ -1,8 +1,8 @@
 //
-//  ViewController.swift
+//  MainViewController.swift
 //  BogusCode
 //
-//  Created by Dev Devshire on 9/28/16.
+//  Created by Natanel Niazoff on 11/6/17.
 //  Copyright © 2016 Vimeo. All rights reserved.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -26,20 +26,44 @@
 
 import UIKit
 
-class ViewController: UITableViewController, NSURLConnectionDelegate
-{
+class MainViewController: UITableViewController, NSURLConnectionDelegate {
     var objects: NSMutableArray = NSMutableArray()
     var pictures: NSMutableArray = NSMutableArray()
     var url: String = String()
     var kOneConstant = 1
     
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
-    {
-        return 100.0
+    struct API {
+        static let token = "4a5f06d19249c1cfd67b09055bf13e01"
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
-    {
+    override func viewDidLoad() {
+        self.navigationItem.title = "Vimeo Staff ❤️"
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        let url = URL(string: "https://api.vimeo.com/channels/staffpicks/videos")!
+        var urlRequest = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 0)
+        urlRequest.httpMethod = "GET"
+        urlRequest.addValue("bearer \(API.token)", forHTTPHeaderField: "Authorization")
+        URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
+            let json = try! JSONSerialization.jsonObject(with: data!, options: []) as! [String : AnyObject]
+            self.objects = NSMutableArray(array: json["data"] as! [AnyObject])
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }.resume()
+    }
+    
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return kOneConstant
+    }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        self.tableView = tableView
+        return 1000
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(frame: self.view.bounds)
         
         if self.objects.count > 0
@@ -93,45 +117,7 @@ class ViewController: UITableViewController, NSURLConnectionDelegate
         return cell
     }
     
-    override func numberOfSections(in tableView: UITableView) -> Int
-    {
-        return kOneConstant
-    }
-    
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
-    {
-        
-        self.tableView = tableView
-        return 1000
-    }
-    
-    override func viewDidAppear(_ animated: Bool)
-    {
-        let request: NSMutableURLRequest = NSMutableURLRequest(url: NSURL(string: "https://api.vimeo.com/channels/staffpicks/videos") as! URL)
-        request.setValue("bearer YOUR_TOKEN_HERE", forHTTPHeaderField: "Authorization")
-        request.httpMethod = "GET"
-        
-        do
-        {
-            let _: NSURLConnection = NSURLConnection(request: request as URLRequest, delegate: self)!
-            
-            request.cachePolicy = .reloadIgnoringLocalCacheData
-            
-            let response: Data = try NSURLConnection.sendSynchronousRequest(request as URLRequest, returning: nil)
-            let _: String = String(data: response, encoding: .utf8)!
-            let responseDictionary: Any = try JSONSerialization.jsonObject(with: response, options: .allowFragments)
-            
-            if let jsonDictionary = responseDictionary as? Dictionary<String, AnyObject>
-            {
-                self.objects = NSMutableArray(array: jsonDictionary["data"] as! NSArray)
-            }
-        } catch { print("bad response") }
-        
-        self.tableView.reloadData()
-    }
-    
-    override func viewDidLoad() {
-        self.navigationItem.title = "Vimeo Staf Pics"
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100.0
     }
 }
-
