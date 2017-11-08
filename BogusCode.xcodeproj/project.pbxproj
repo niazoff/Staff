@@ -14,6 +14,8 @@
 		0C9061561D9C458C00D80FA6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C9061541D9C458C00D80FA6 /* LaunchScreen.storyboard */; };
 		0C9061611D9C458C00D80FA6 /* BogusCodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9061601D9C458C00D80FA6 /* BogusCodeTests.swift */; };
 		5B1298971FB20AD900CF60B4 /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1298961FB20AD900CF60B4 /* Video.swift */; };
+		5B1298991FB39C2400CF60B4 /* VideoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1298981FB39C2400CF60B4 /* VideoTableViewCell.swift */; };
+		5B12989B1FB3A84700CF60B4 /* APIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B12989A1FB3A84700CF60B4 /* APIHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +40,8 @@
 		0C9061601D9C458C00D80FA6 /* BogusCodeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BogusCodeTests.swift; sourceTree = "<group>"; };
 		0C9061621D9C458C00D80FA6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5B1298961FB20AD900CF60B4 /* Video.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
+		5B1298981FB39C2400CF60B4 /* VideoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoTableViewCell.swift; sourceTree = "<group>"; };
+		5B12989A1FB3A84700CF60B4 /* APIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,8 +84,10 @@
 			isa = PBXGroup;
 			children = (
 				0C90614B1D9C458C00D80FA6 /* AppDelegate.swift */,
+				5B12989A1FB3A84700CF60B4 /* APIHelper.swift */,
 				5B1298961FB20AD900CF60B4 /* Video.swift */,
 				0C90614D1D9C458C00D80FA6 /* MainViewController.swift */,
+				5B1298981FB39C2400CF60B4 /* VideoTableViewCell.swift */,
 				0C90614F1D9C458C00D80FA6 /* Main.storyboard */,
 				0C9061521D9C458C00D80FA6 /* Assets.xcassets */,
 				0C9061541D9C458C00D80FA6 /* LaunchScreen.storyboard */,
@@ -206,7 +212,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				0C90614E1D9C458C00D80FA6 /* MainViewController.swift in Sources */,
+				5B1298991FB39C2400CF60B4 /* VideoTableViewCell.swift in Sources */,
 				5B1298971FB20AD900CF60B4 /* Video.swift in Sources */,
+				5B12989B1FB3A84700CF60B4 /* APIHelper.swift in Sources */,
 				0C90614C1D9C458C00D80FA6 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

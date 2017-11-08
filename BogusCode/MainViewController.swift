@@ -31,11 +31,6 @@ class MainViewController: UITableViewController {
     var filteredVideos = [Video]()
     let searchController = UISearchController(searchResultsController: nil)
     
-    struct API {
-        static let staffPicks = "https://api.vimeo.com/channels/staffpicks/videos"
-        static let token = "4a5f06d19249c1cfd67b09055bf13e01"
-    }
-    
     override func viewDidLoad() {
         if #available(iOS 11.0, *) {
             navigationController?.navigationBar.prefersLargeTitles = true
@@ -43,7 +38,6 @@ class MainViewController: UITableViewController {
         navigationItem.title = "Vimeo Staff ❤️"
         
         searchController.searchResultsUpdater = self
-        searchController.hidesNavigationBarDuringPresentation = false
         searchController.dimsBackgroundDuringPresentation = false
         if #available(iOS 11.0, *) {
             navigationItem.searchController = searchController
@@ -51,20 +45,11 @@ class MainViewController: UITableViewController {
             tableView.tableHeaderView = searchController.searchBar
         }
         
-        let url = URL(string: API.staffPicks)!
-        var urlRequest = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 0)
-        urlRequest.httpMethod = "GET"
-        urlRequest.addValue("bearer \(API.token)", forHTTPHeaderField: "Authorization")
-        URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
-            let rawVideos = try! JSONDecoder().decode(RawVideos.self, from: data!)
-            for videoData in rawVideos.data {
-                self.videos.append(Video(from: videoData))
-            }
-            self.filteredVideos = self.videos
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
-        }.resume()
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(MainViewController.loadVideos), for: .valueChanged)
+        tableView.refreshControl = refreshControl
+        
+        loadVideos()
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -77,9 +62,12 @@ class MainViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let video = filteredVideos[indexPath.row]
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell")!
-        cell.textLabel?.text = video.name
-        cell.imageView?.setImage(with: video.link) { image in
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! VideoTableViewCell
+        cell.videoLabel.text = video.name
+        cell.userLabel.text = video.user
+        cell.viewsLabel.text = "\(video.views)"
+        cell.likesLabel.text = "\(video.likes)"
+        cell.videoImageView.setImage(with: video.url) { image in
             cell.layoutSubviews()
         }
         return cell
@@ -87,6 +75,17 @@ class MainViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100
+    }
+    
+    @objc func loadVideos() {
+        APIHelper.loadVideos { videos in
+            self.videos = videos
+            self.filteredVideos = videos
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+                self.tableView.refreshControl?.endRefreshing()
+            }
+        }
     }
 }
 

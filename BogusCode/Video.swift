@@ -10,15 +10,21 @@ import Foundation
 
 class Video: Decodable, CustomStringConvertible {
     let name: String
-    let link: URL
+    var user = ""
+    let url: URL
+    var views = 0
+    var likes = 0
 
-    init(name: String, link: URL) {
+    init(name: String, url: URL) {
         self.name = name
-        self.link = link
+        self.url = url
     }
 
     convenience init(from data: RawVideos.Data) {
-        self.init(name: data.name, link: data.pictures.sizes.first!.link)
+        self.init(name: data.name, url: data.pictures.sizes.first!.link)
+        user = data.user.name
+        views = data.stats.plays ?? 0
+        likes = data.metadata.connections.likes.total
     }
     
     var description: String {
@@ -35,26 +41,65 @@ struct RawVideos: Decodable {
     
     struct Data: Decodable {
         let name: String
+        let user: User
         let pictures: Pictures
+        let metadata: Metadata
+        let stats: Stats
         
         enum CodingKeys: String, CodingKey {
-            case name, pictures
+            case name, user, pictures, metadata, stats
         }
-    }
-    
-    struct Pictures: Decodable {
-        let sizes: [Size]
         
-        enum CodingKeys: String, CodingKey {
-            case sizes
+        struct User: Decodable {
+            let name: String
+            
+            enum CodingKeys: String, CodingKey {
+                case name
+            }
         }
-    }
-    
-    struct Size: Decodable {
-        let link: URL
         
-        enum CodingKeys: String, CodingKey {
-            case link
+        struct Pictures: Decodable {
+            let sizes: [Size]
+            
+            enum CodingKeys: String, CodingKey {
+                case sizes
+            }
+            
+            struct Size: Decodable {
+                let link: URL
+                
+                enum CodingKeys: String, CodingKey {
+                    case link
+                }
+            }
+        }
+        
+        struct Metadata: Decodable {
+            let connections: Connections
+            
+            enum CodingKeys: String, CodingKey {
+                case connections
+            }
+            
+            struct Connections: Decodable {
+                let likes: Likes
+                
+                enum CodingKeys: String, CodingKey {
+                    case likes
+                }
+                
+                struct Likes: Decodable {
+                    let total: Int
+                    
+                    enum CodingKeys: String, CodingKey {
+                        case total
+                    }
+                }
+            }
+        }
+        
+        struct Stats: Decodable {
+            let plays: Int?
         }
     }
 }
