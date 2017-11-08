@@ -3,7 +3,7 @@
 //  BogusCode
 //
 //  Created by Natanel Niazoff on 11/6/17.
-//  Copyright © 2016 Vimeo. All rights reserved.
+//  Copyright © 2017 Natanel Niazoff. All rights reserved.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -46,10 +46,15 @@ class MainViewController: UITableViewController, NSURLConnectionDelegate {
         urlRequest.httpMethod = "GET"
         urlRequest.addValue("bearer \(API.token)", forHTTPHeaderField: "Authorization")
         URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
-            let json = try! JSONSerialization.jsonObject(with: data!, options: []) as! [String : AnyObject]
-            self.objects = NSMutableArray(array: json["data"] as! [AnyObject])
+            do {
+                let videos = try JSONDecoder().decode([Video].self, from: data!)
+                print(videos)
+            }
+            catch let jsonError {
+                print(jsonError)
+            }
             DispatchQueue.main.async {
-                self.tableView.reloadData()
+                //self.tableView.reloadData()
             }
         }.resume()
     }
