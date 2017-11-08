@@ -47,14 +47,18 @@ class MainViewController: UITableViewController, NSURLConnectionDelegate {
         urlRequest.addValue("bearer \(API.token)", forHTTPHeaderField: "Authorization")
         URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
             do {
-                let videos = try JSONDecoder().decode([Video].self, from: data!)
-                print(videos)
+                let json = try JSONSerialization.jsonObject(with: data!, options: []) as! [String : Any]
+                self.objects = NSMutableArray(array: (json["data"] as! [Any]))
+                print(self.objects.count)
+//                print((json["data"] as! [Any]).count)
+//                let videos = try JSONDecoder().decode(RawVideo.self, from: data!)
+//                print(videos.data)
             }
             catch let jsonError {
                 print(jsonError)
             }
             DispatchQueue.main.async {
-                //self.tableView.reloadData()
+                self.tableView.reloadData()
             }
         }.resume()
     }
