@@ -29,9 +29,7 @@ import UIKit
 class MainViewController: UITableViewController {
     var videos = [Video]()
     var filteredVideos = [Video]()
-    var searching = false
-    
-    @IBOutlet weak var searchBar: UISearchBar!
+    let searchController = UISearchController(searchResultsController: nil)
     
     struct API {
         static let staffPicks = "https://api.vimeo.com/channels/staffpicks/videos"
@@ -39,7 +37,19 @@ class MainViewController: UITableViewController {
     }
     
     override func viewDidLoad() {
-        self.navigationItem.title = "Vimeo Staff ❤️"
+        if #available(iOS 11.0, *) {
+            navigationController?.navigationBar.prefersLargeTitles = true
+        }
+        navigationItem.title = "Vimeo Staff ❤️"
+        
+        searchController.searchResultsUpdater = self
+        searchController.hidesNavigationBarDuringPresentation = false
+        searchController.dimsBackgroundDuringPresentation = false
+        if #available(iOS 11.0, *) {
+            navigationItem.searchController = searchController
+        } else {
+            tableView.tableHeaderView = searchController.searchBar
+        }
         
         let url = URL(string: API.staffPicks)!
         var urlRequest = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 0)
@@ -50,6 +60,7 @@ class MainViewController: UITableViewController {
             for videoData in rawVideos.data {
                 self.videos.append(Video(from: videoData))
             }
+            self.filteredVideos = self.videos
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
@@ -61,11 +72,11 @@ class MainViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return searching ? filteredVideos.count : videos.count
+        return filteredVideos.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let video = videos[indexPath.row]
+        let video = filteredVideos[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell")!
         cell.textLabel?.text = video.name
         cell.imageView?.setImage(with: video.link) { image in
@@ -79,17 +90,14 @@ class MainViewController: UITableViewController {
     }
 }
 
-extension MainViewController: UISearchBarDelegate {
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        if searchBar.text == nil || searchBar.text == "" {
-            searching = false
-            view.endEditing(true)
-            tableView.reloadData()
+extension MainViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        if let searchText = searchController.searchBar.text, !searchText.isEmpty {
+            filteredVideos = videos.filter { $0.name.lowercased().contains(searchText.lowercased()) }
         } else {
-            searching = true
-            filteredVideos = videos.filter { $0.name.contains(searchBar.text!) }
-            tableView.reloadData()
+            filteredVideos = videos
         }
+        tableView.reloadData()
     }
 }
 
