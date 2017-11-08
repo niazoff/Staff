@@ -8,23 +8,25 @@
 
 import Foundation
 
-//class Video: Decodable {
-//    let name: String
-//    let link: String
-//
-//    init(name: String, link: String) {
-//        self.name = name
-//        self.link = link
-//    }
-//
-//    required init(for decoder: Decoder) throws {
-//        let rawVideo = try RawVideo(from: decoder)
-//        name = rawVideo.data.name
-//        link = rawVideo.data.pictures.first!.sizes.first!.link
-//    }
-//}
+class Video: Decodable, CustomStringConvertible {
+    let name: String
+    let link: String
 
-struct RawVideo: Decodable {
+    init(name: String, link: String) {
+        self.name = name
+        self.link = link
+    }
+
+    convenience init(from data: RawVideos.Data) {
+        self.init(name: data.name, link: data.pictures.sizes.first!.link)
+    }
+    
+    var description: String {
+        return name
+    }
+}
+
+struct RawVideos: Decodable {
     let data: [Data]
     
     enum CodingKeys: String, CodingKey {

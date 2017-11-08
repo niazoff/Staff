@@ -27,10 +27,7 @@
 import UIKit
 
 class MainViewController: UITableViewController, NSURLConnectionDelegate {
-    var objects: NSMutableArray = NSMutableArray()
-    var pictures: NSMutableArray = NSMutableArray()
-    var url: String = String()
-    var kOneConstant = 1
+    var videos = [Video]()
     
     struct API {
         static let token = "4a5f06d19249c1cfd67b09055bf13e01"
@@ -46,16 +43,9 @@ class MainViewController: UITableViewController, NSURLConnectionDelegate {
         urlRequest.httpMethod = "GET"
         urlRequest.addValue("bearer \(API.token)", forHTTPHeaderField: "Authorization")
         URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
-            do {
-                let json = try JSONSerialization.jsonObject(with: data!, options: []) as! [String : Any]
-                self.objects = NSMutableArray(array: (json["data"] as! [Any]))
-                print(self.objects.count)
-//                print((json["data"] as! [Any]).count)
-//                let videos = try JSONDecoder().decode(RawVideo.self, from: data!)
-//                print(videos.data)
-            }
-            catch let jsonError {
-                print(jsonError)
+            let rawVideos = try! JSONDecoder().decode(RawVideos.self, from: data!)
+            for videoData in rawVideos.data {
+                self.videos.append(Video(from: videoData))
             }
             DispatchQueue.main.async {
                 self.tableView.reloadData()
@@ -64,66 +54,16 @@ class MainViewController: UITableViewController, NSURLConnectionDelegate {
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return kOneConstant
+        return 0
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         self.tableView = tableView
-        return 1000
+        return 0
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(frame: self.view.bounds)
-        
-        if self.objects.count > 0
-        {
-            let object = self.objects.object(at: indexPath.row)
-            
-            var name: String = "unknown"
-            if let objectDictionary = object as? Dictionary<String, AnyObject>
-            {
-                name = (objectDictionary["name"] as? String)!
-            }
-            cell.textLabel!.text = name
-            
-            if let objectDictionary = object as? Dictionary<String, AnyObject>
-            {
-                if let pictures = objectDictionary["pictures"]
-                {
-                    if let picturesDictionary = pictures as? Dictionary<String, AnyObject>
-                    {
-                        if let sizes = picturesDictionary["sizes"]
-                        {
-                            if let sizesArray = sizes as? Array<AnyObject>
-                            {
-                                let first = sizesArray[0]
-                                let firstDictionary = first as! Dictionary<String, AnyObject>
-                                let link = firstDictionary["link"] as! String
-                                url = link
-                            }
-                        }
-                    }
-                }
-            }
-            
-            var image: UIImage?
-            do
-            {
-            image = UIImage(data: try Data(contentsOf: URL(string: url)!))
-            } catch {
-                print("bad image")
-                image = UIImage()
-            }
-            
-            cell.imageView!.image = image
-            
-            if cell.textLabel?.text == ""
-            {
-                cell.textLabel!.text = "no more videos, scroll up…"
-            }
-        }
-        
-        return cell
+        return UITableViewCell()
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
