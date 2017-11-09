@@ -74,7 +74,9 @@ class MainViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! VideoTableViewCell
         cell.videoLabel.text = video.name
         cell.userLabel.text = video.user
+        // If video has views...
         if video.views > 0 {
+            // ...unhide needed views and set to appropriate data.
             cell.viewsLabel.isHidden = false
             cell.viewsImageView.isHidden = false
             cell.viewsLabel.text = "\(video.views)"
@@ -82,7 +84,9 @@ class MainViewController: UITableViewController {
             cell.viewsLabel.isHidden = true
             cell.viewsImageView.isHidden = true
         }
+        // If video has likes...
         if video.likes > 0 {
+            // ...unhide needed views and set to appropriate data.
             cell.likesLabel.isHidden = false
             cell.likesImageView.isHidden = false
             cell.likesLabel.text = "\(video.likes)"
