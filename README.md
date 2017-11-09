@@ -1,6 +1,6 @@
+![Alt text](/Resources/vimeo.png?raw=true "Vimeo")
 
-
-Staff is an iOS app that fetches and displays the first page of videos in the [Vimeo Staff Picks channel](https://developer.vimeo.com/api/endpoints) ❤️. I inherited it as "BogusCode" and my task was to
+Staff ❤️ is an iOS app that fetches and displays the first page of videos in the [Vimeo Staff Picks channel](https://developer.vimeo.com/api/endpoints) 📺. I inherited it as "BogusCode" and my task was to
 
 > elevate it to [my] own standard of quality. Correct all of the issues [I] see, refactor as [I] see fit, and make BogusCode clean, clear, performant and scalable.
 
@@ -14,4 +14,6 @@ From the outset I knew I wanted (and needed) to create an app that was future-pr
 
 I strongly believe in keeping view controllers as simple and short as possible. This avoids the notorious massive view controller problem. Although keeping with MVC standards, I've spread out code as much as possible. Besides taking out JSON parsing, which is now mostly done behind the scenes as explained above, a new `APIHelper` struct was created to handle API properties and methods. With these changes I was able to check off most of my list but I wanted to do more.
 
-Search was obviously something I knew right away needed to be added. I used `UISearchController` and the `UISearchResultsUpdating` protocol to filter the video data and reload with the proper data. I also added the video's user's name, the amount of views if available and the amount of likes in each cell. The final result is a beutiful app that is clean, architecturally stable 🏛 and a pleasure to use 😊.
+Search was obviously something I knew right away needed to be added. I used `UISearchController` and the `UISearchResultsUpdating` protocol to filter the video data and reload with the proper data. Refreshing was also added to keep you up to date. Finally, I also added the video's user's name, the amount of views if available and the amount of likes in each cell. The end result is a beutiful app that is clean, architecturally stable 🏛 and a pleasure to use 😊.
+
+![Alt text](/Resources/screenshot.png?raw=true "Screenshot")
