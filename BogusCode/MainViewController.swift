@@ -65,8 +65,22 @@ class MainViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! VideoTableViewCell
         cell.videoLabel.text = video.name
         cell.userLabel.text = video.user
-        cell.viewsLabel.text = "\(video.views)"
-        cell.likesLabel.text = "\(video.likes)"
+        if video.views > 0 {
+            cell.viewsLabel.isHidden = false
+            cell.viewsImageView.isHidden = false
+            cell.viewsLabel.text = "\(video.views)"
+        } else {
+            cell.viewsLabel.isHidden = true
+            cell.viewsImageView.isHidden = true
+        }
+        if video.likes > 0 {
+            cell.likesLabel.isHidden = false
+            cell.likesImageView.isHidden = false
+            cell.likesLabel.text = "\(video.likes)"
+        } else {
+            cell.likesLabel.isHidden = true
+            cell.likesImageView.isHidden = true
+        }
         cell.videoImageView.setImage(with: video.url) { image in
             cell.layoutSubviews()
         }

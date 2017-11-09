@@ -12,6 +12,8 @@ class VideoTableViewCell: UITableViewCell {
     @IBOutlet weak var videoImageView: UIImageView!
     @IBOutlet weak var videoLabel: UILabel!
     @IBOutlet weak var userLabel: UILabel!
+    @IBOutlet weak var viewsImageView: UIImageView!
+    @IBOutlet weak var likesImageView: UIImageView!
     @IBOutlet weak var viewsLabel: UILabel!
     @IBOutlet weak var likesLabel: UILabel!
 }
