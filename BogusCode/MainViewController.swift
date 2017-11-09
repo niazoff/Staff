@@ -32,16 +32,23 @@ class MainViewController: UITableViewController {
     let searchController = UISearchController(searchResultsController: nil)
     
     override func viewDidLoad() {
+        // If running iOS 11 or later...
         if #available(iOS 11.0, *) {
+            // ...set up new large navigation bar.
             navigationController?.navigationBar.prefersLargeTitles = true
         }
         navigationItem.title = "Vimeo Staff ❤️"
         
         searchController.searchResultsUpdater = self
         searchController.dimsBackgroundDuringPresentation = false
+        // If running iOS 11 or later...
         if #available(iOS 11.0, *) {
+            // ...place search bar in navigation bar.
             navigationItem.searchController = searchController
-        } else {
+        }
+        // If running anything lower than iOS 11...
+        else {
+            // ...simply set the header view to the search bar.
             tableView.tableHeaderView = searchController.searchBar
         }
         
@@ -49,9 +56,11 @@ class MainViewController: UITableViewController {
         refreshControl.addTarget(self, action: #selector(MainViewController.loadVideos), for: .valueChanged)
         tableView.refreshControl = refreshControl
         
+        // load videos from API...
         loadVideos()
     }
     
+    // MARK: Table View Data Source
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -87,6 +96,7 @@ class MainViewController: UITableViewController {
         return cell
     }
     
+    // MARK: Table View Delegate
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100
     }
@@ -105,9 +115,14 @@ class MainViewController: UITableViewController {
 
 extension MainViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
+        // If text to search isn't empty...
         if let searchText = searchController.searchBar.text, !searchText.isEmpty {
+            // ...set `filteredVideos` to the `videos` that contain the text.
             filteredVideos = videos.filter { $0.name.lowercased().contains(searchText.lowercased()) }
-        } else {
+        }
+        // If no search text...
+        else {
+            // ...simply set `filteredVideos` to all the `videos`.
             filteredVideos = videos
         }
         tableView.reloadData()

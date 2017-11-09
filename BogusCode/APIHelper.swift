@@ -21,8 +21,11 @@ struct APIHelper {
         urlRequest.addValue("bearer \(APIKeys.token)", forHTTPHeaderField: "Authorization")
         URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
             var videos = [Video]()
+            // Decode json data from url into `RawVideo` object
             let rawVideos = try! JSONDecoder().decode(RawVideos.self, from: data!)
+            // For all data objects in `RawVideo`...
             for videoData in rawVideos.data {
+                // ...parse in `Video` object and append to `videos`.
                 videos.append(Video(from: videoData))
             }
             completionHandler(videos)
