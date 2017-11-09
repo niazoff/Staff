@@ -46,6 +46,7 @@
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="EpD-M8-OCb">
                                             <rect key="frame" x="8" y="12" width="100" height="75"/>
+                                            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="100" id="nFL-f3-6P0"/>
                                                 <constraint firstAttribute="height" constant="75" id="yM3-jw-6wk"/>
@@ -109,6 +110,9 @@
                                                 </label>
                                             </subviews>
                                         </stackView>
+                                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="G3P-bm-mTf">
+                                            <rect key="frame" x="48" y="39" width="20" height="20"/>
+                                        </activityIndicatorView>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="XhG-EN-UbO" firstAttribute="bottom" secondItem="EpD-M8-OCb" secondAttribute="bottom" id="18F-e0-3Hk"/>
@@ -117,10 +121,13 @@
                                         <constraint firstItem="XhG-EN-UbO" firstAttribute="leading" secondItem="hgs-Ys-9eG" secondAttribute="leading" id="SbT-fh-LCO"/>
                                         <constraint firstItem="EpD-M8-OCb" firstAttribute="centerY" secondItem="LKZ-jx-zC4" secondAttribute="centerY" id="bN5-Ca-0NU"/>
                                         <constraint firstItem="EpD-M8-OCb" firstAttribute="leading" secondItem="LKZ-jx-zC4" secondAttribute="leadingMargin" id="hPb-oi-kWd"/>
+                                        <constraint firstItem="G3P-bm-mTf" firstAttribute="centerX" secondItem="EpD-M8-OCb" secondAttribute="centerX" id="i35-ic-MGw"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="hgs-Ys-9eG" secondAttribute="trailing" id="w80-qB-NtF"/>
+                                        <constraint firstItem="G3P-bm-mTf" firstAttribute="centerY" secondItem="EpD-M8-OCb" secondAttribute="centerY" id="xck-JV-Tzl"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="imageActivity" destination="G3P-bm-mTf" id="O8T-KF-yCg"/>
                                     <outlet property="likesImageView" destination="esN-rt-zRt" id="a7G-Vx-SAM"/>
                                     <outlet property="likesLabel" destination="AX5-NB-YUv" id="s3L-SZ-W6j"/>
                                     <outlet property="userLabel" destination="3Te-Bt-GaZ" id="pxV-Fj-8jn"/>

@@ -94,8 +94,11 @@ class MainViewController: UITableViewController {
             cell.likesLabel.isHidden = true
             cell.likesImageView.isHidden = true
         }
+        cell.imageActivity.isHidden = false
+        cell.imageActivity.hidesWhenStopped = true
         cell.videoImageView.setImage(with: video.url) { image in
             cell.layoutSubviews()
+            cell.imageActivity.stopAnimating()
         }
         return cell
     }
@@ -106,12 +109,25 @@ class MainViewController: UITableViewController {
     }
     
     @objc func loadVideos() {
-        APIHelper.loadVideos { videos in
-            self.videos = videos
-            self.filteredVideos = videos
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-                self.tableView.refreshControl?.endRefreshing()
+        APIHelper.loadVideos { videos, error in
+            // If there's an error...
+            if error != nil {
+                DispatchQueue.main.async {
+                    // ...alert user.
+                    let alert = UIAlertController(title: "Oops!", message: "\(error!.localizedDescription) Pull to refresh to retry.", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default) { action in
+                        self.dismiss(animated: true, completion: nil)
+                    })
+                    self.tableView.refreshControl?.endRefreshing()
+                    self.present(alert, animated: true, completion: nil)
+                }
+            } else {
+                self.videos = videos
+                self.filteredVideos = videos
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                    self.tableView.refreshControl?.endRefreshing()
+                }
             }
         }
     }
