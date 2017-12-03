@@ -14,6 +14,7 @@ class Video: Decodable, CustomStringConvertible {
     let url: URL
     var views = 0
     var likes = 0
+    var isMature = false
 
     init(name: String, url: URL) {
         self.name = name
@@ -25,6 +26,9 @@ class Video: Decodable, CustomStringConvertible {
         user = data.user.name
         views = data.stats.plays ?? 0
         likes = data.metadata.connections.likes.total
+        if data.content_rating[0] != "safe" {
+            isMature = true
+        }
     }
     
     var description: String {
@@ -45,9 +49,10 @@ struct RawVideos: Decodable {
         let pictures: Pictures
         let metadata: Metadata
         let stats: Stats
+        let content_rating: [String]
         
         enum CodingKeys: String, CodingKey {
-            case name, user, pictures, metadata, stats
+            case name, user, pictures, metadata, stats, content_rating
         }
         
         struct User: Decodable {

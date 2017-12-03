@@ -79,7 +79,7 @@ class MainViewController: UITableViewController {
             // ...unhide needed views and set to appropriate data.
             cell.viewsLabel.isHidden = false
             cell.viewsImageView.isHidden = false
-            cell.viewsLabel.text = "\(video.views)"
+            cell.viewsLabel.text = video.views.decimalFormattedString
         } else {
             cell.viewsLabel.isHidden = true
             cell.viewsImageView.isHidden = true
@@ -89,7 +89,7 @@ class MainViewController: UITableViewController {
             // ...unhide needed views and set to appropriate data.
             cell.likesLabel.isHidden = false
             cell.likesImageView.isHidden = false
-            cell.likesLabel.text = "\(video.likes)"
+            cell.likesLabel.text = video.likes.decimalFormattedString
         } else {
             cell.likesLabel.isHidden = true
             cell.likesImageView.isHidden = true
@@ -100,6 +100,8 @@ class MainViewController: UITableViewController {
             cell.layoutSubviews()
             cell.imageActivity.stopAnimating()
         }
+        // If video is mature show M.
+        cell.matureImageView.isHidden = !video.isMature
         return cell
     }
     
@@ -158,5 +160,13 @@ extension UIImageView {
                 completion(image!)
             }
         }.resume()
+    }
+}
+
+extension Int {
+    var decimalFormattedString: String {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        return formatter.string(from: NSNumber(value: self))!
     }
 }
