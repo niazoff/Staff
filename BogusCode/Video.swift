@@ -26,7 +26,7 @@ class Video: Decodable, CustomStringConvertible {
         user = data.user.name
         views = data.stats.plays ?? 0
         likes = data.metadata.connections.likes.total
-        if data.content_rating[0] != "safe" {
+        if data.contentRating[0] != "safe" {
             isMature = true
         }
     }
@@ -49,10 +49,11 @@ struct RawVideos: Decodable {
         let pictures: Pictures
         let metadata: Metadata
         let stats: Stats
-        let content_rating: [String]
+        let contentRating: [String]
         
         enum CodingKeys: String, CodingKey {
-            case name, user, pictures, metadata, stats, content_rating
+            case name, user, pictures, metadata, stats
+            case contentRating = "content_rating"
         }
         
         struct User: Decodable {
