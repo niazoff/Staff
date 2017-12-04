@@ -13,6 +13,15 @@
 		0C9061531D9C458C00D80FA6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0C9061521D9C458C00D80FA6 /* Assets.xcassets */; };
 		0C9061561D9C458C00D80FA6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C9061541D9C458C00D80FA6 /* LaunchScreen.storyboard */; };
 		0C9061611D9C458C00D80FA6 /* BogusCodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9061601D9C458C00D80FA6 /* BogusCodeTests.swift */; };
+		5B030A6B1FD4BDF800ACA04C /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B030A6A1FD4BDF800ACA04C /* NotificationCenter.framework */; };
+		5B030A6E1FD4BDF800ACA04C /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B030A6D1FD4BDF800ACA04C /* TodayViewController.swift */; };
+		5B030A711FD4BDF800ACA04C /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5B030A6F1FD4BDF800ACA04C /* MainInterface.storyboard */; };
+		5B030A751FD4BDF800ACA04C /* Staff Top.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 5B030A681FD4BDF800ACA04C /* Staff Top.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		5B030A7A1FD4C27400ACA04C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0C9061521D9C458C00D80FA6 /* Assets.xcassets */; };
+		5B030A7B1FD4C49400ACA04C /* APIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B12989A1FB3A84700CF60B4 /* APIHelper.swift */; };
+		5B030A7C1FD4C49700ACA04C /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1298961FB20AD900CF60B4 /* Video.swift */; };
+		5B030A7D1FD4C99000ACA04C /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C90614D1D9C458C00D80FA6 /* MainViewController.swift */; };
+		5B030A7E1FD4CA2200ACA04C /* VideoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1298981FB39C2400CF60B4 /* VideoTableViewCell.swift */; };
 		5B1298971FB20AD900CF60B4 /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1298961FB20AD900CF60B4 /* Video.swift */; };
 		5B1298991FB39C2400CF60B4 /* VideoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1298981FB39C2400CF60B4 /* VideoTableViewCell.swift */; };
 		5B12989B1FB3A84700CF60B4 /* APIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B12989A1FB3A84700CF60B4 /* APIHelper.swift */; };
@@ -26,7 +35,28 @@
 			remoteGlobalIDString = 0C9061471D9C458C00D80FA6;
 			remoteInfo = BogusCode;
 		};
+		5B030A731FD4BDF800ACA04C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0C9061401D9C458C00D80FA6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5B030A671FD4BDF800ACA04C;
+			remoteInfo = "Staff Top";
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		5B030A791FD4BDF800ACA04C /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				5B030A751FD4BDF800ACA04C /* Staff Top.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		0C9061481D9C458C00D80FA6 /* BogusCode.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BogusCode.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -39,6 +69,11 @@
 		0C90615C1D9C458C00D80FA6 /* BogusCodeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BogusCodeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C9061601D9C458C00D80FA6 /* BogusCodeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BogusCodeTests.swift; sourceTree = "<group>"; };
 		0C9061621D9C458C00D80FA6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5B030A681FD4BDF800ACA04C /* Staff Top.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Staff Top.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5B030A6A1FD4BDF800ACA04C /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
+		5B030A6D1FD4BDF800ACA04C /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
+		5B030A701FD4BDF800ACA04C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		5B030A721FD4BDF800ACA04C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5B1298961FB20AD900CF60B4 /* Video.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
 		5B1298981FB39C2400CF60B4 /* VideoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoTableViewCell.swift; sourceTree = "<group>"; };
 		5B12989A1FB3A84700CF60B4 /* APIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIHelper.swift; sourceTree = "<group>"; };
@@ -59,6 +94,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		5B030A651FD4BDF800ACA04C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5B030A6B1FD4BDF800ACA04C /* NotificationCenter.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -67,6 +110,8 @@
 			children = (
 				0C90614A1D9C458C00D80FA6 /* BogusCode */,
 				0C90615F1D9C458C00D80FA6 /* BogusCodeTests */,
+				5B030A6C1FD4BDF800ACA04C /* Staff Top */,
+				5B030A691FD4BDF800ACA04C /* Frameworks */,
 				0C9061491D9C458C00D80FA6 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -76,6 +121,7 @@
 			children = (
 				0C9061481D9C458C00D80FA6 /* BogusCode.app */,
 				0C90615C1D9C458C00D80FA6 /* BogusCodeTests.xctest */,
+				5B030A681FD4BDF800ACA04C /* Staff Top.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -105,6 +151,24 @@
 			path = BogusCodeTests;
 			sourceTree = "<group>";
 		};
+		5B030A691FD4BDF800ACA04C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5B030A6A1FD4BDF800ACA04C /* NotificationCenter.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		5B030A6C1FD4BDF800ACA04C /* Staff Top */ = {
+			isa = PBXGroup;
+			children = (
+				5B030A6D1FD4BDF800ACA04C /* TodayViewController.swift */,
+				5B030A6F1FD4BDF800ACA04C /* MainInterface.storyboard */,
+				5B030A721FD4BDF800ACA04C /* Info.plist */,
+			);
+			path = "Staff Top";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -115,10 +179,12 @@
 				0C9061441D9C458C00D80FA6 /* Sources */,
 				0C9061451D9C458C00D80FA6 /* Frameworks */,
 				0C9061461D9C458C00D80FA6 /* Resources */,
+				5B030A791FD4BDF800ACA04C /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				5B030A741FD4BDF800ACA04C /* PBXTargetDependency */,
 			);
 			name = BogusCode;
 			productName = BogusCode;
@@ -143,13 +209,30 @@
 			productReference = 0C90615C1D9C458C00D80FA6 /* BogusCodeTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		5B030A671FD4BDF800ACA04C /* Staff Top */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5B030A781FD4BDF800ACA04C /* Build configuration list for PBXNativeTarget "Staff Top" */;
+			buildPhases = (
+				5B030A641FD4BDF800ACA04C /* Sources */,
+				5B030A651FD4BDF800ACA04C /* Frameworks */,
+				5B030A661FD4BDF800ACA04C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Staff Top";
+			productName = "Staff Top";
+			productReference = 5B030A681FD4BDF800ACA04C /* Staff Top.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		0C9061401D9C458C00D80FA6 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0800;
+				LastSwiftUpdateCheck = 0910;
 				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = Vimeo;
 				TargetAttributes = {
@@ -164,6 +247,11 @@
 						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 0C9061471D9C458C00D80FA6;
+					};
+					5B030A671FD4BDF800ACA04C = {
+						CreatedOnToolsVersion = 9.1;
+						DevelopmentTeam = LWC7S9F6VV;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -182,6 +270,7 @@
 			targets = (
 				0C9061471D9C458C00D80FA6 /* BogusCode */,
 				0C90615B1D9C458C00D80FA6 /* BogusCodeTests */,
+				5B030A671FD4BDF800ACA04C /* Staff Top */,
 			);
 		};
 /* End PBXProject section */
@@ -201,6 +290,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5B030A661FD4BDF800ACA04C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5B030A7A1FD4C27400ACA04C /* Assets.xcassets in Resources */,
+				5B030A711FD4BDF800ACA04C /* MainInterface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -227,6 +325,18 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		5B030A641FD4BDF800ACA04C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5B030A7B1FD4C49400ACA04C /* APIHelper.swift in Sources */,
+				5B030A7C1FD4C49700ACA04C /* Video.swift in Sources */,
+				5B030A6E1FD4BDF800ACA04C /* TodayViewController.swift in Sources */,
+				5B030A7D1FD4C99000ACA04C /* MainViewController.swift in Sources */,
+				5B030A7E1FD4CA2200ACA04C /* VideoTableViewCell.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -234,6 +344,11 @@
 			isa = PBXTargetDependency;
 			target = 0C9061471D9C458C00D80FA6 /* BogusCode */;
 			targetProxy = 0C90615D1D9C458C00D80FA6 /* PBXContainerItemProxy */;
+		};
+		5B030A741FD4BDF800ACA04C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5B030A671FD4BDF800ACA04C /* Staff Top */;
+			targetProxy = 5B030A731FD4BDF800ACA04C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -252,6 +367,14 @@
 				0C9061551D9C458C00D80FA6 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		5B030A6F1FD4BDF800ACA04C /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5B030A701FD4BDF800ACA04C /* Base */,
+			);
+			name = MainInterface.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -353,7 +476,9 @@
 		0C9061661D9C458C00D80FA6 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEVELOPMENT_TEAM = LWC7S9F6VV;
 				INFOPLIST_FILE = BogusCode/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -368,7 +493,9 @@
 		0C9061671D9C458C00D80FA6 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEVELOPMENT_TEAM = LWC7S9F6VV;
 				INFOPLIST_FILE = BogusCode/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -410,6 +537,62 @@
 			};
 			name = Release;
 		};
+		5B030A761FD4BDF800ACA04C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = LWC7S9F6VV;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = "Staff Top/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "vimeo.BogusCode.Staff-Top";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		5B030A771FD4BDF800ACA04C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = LWC7S9F6VV;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = "Staff Top/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "vimeo.BogusCode.Staff-Top";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -436,6 +619,15 @@
 			buildConfigurations = (
 				0C9061691D9C458C00D80FA6 /* Debug */,
 				0C90616A1D9C458C00D80FA6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5B030A781FD4BDF800ACA04C /* Build configuration list for PBXNativeTarget "Staff Top" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5B030A761FD4BDF800ACA04C /* Debug */,
+				5B030A771FD4BDF800ACA04C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

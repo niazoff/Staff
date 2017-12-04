@@ -152,12 +152,12 @@ extension MainViewController: UISearchResultsUpdating {
 }
 
 extension UIImageView {
-    func setImage(with url: URL, completion: @escaping (UIImage) -> Void) {
+    func setImage(with url: URL, completion: ((UIImage) -> Void)? = nil) {
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             DispatchQueue.main.async {
                 let image = UIImage(data: data!)
                 self.image = image
-                completion(image!)
+                completion?(image!)
             }
         }.resume()
     }
